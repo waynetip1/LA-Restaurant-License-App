@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #C8391A;
+  --brand-light: #FBEAE6;
+  --gold: #C49A2A;
+  --dark: #1C1410;
+  --text: #1C1410;
+  --muted: #6B6B6B;
+  --surface: #FFFFFF;
+  --surface2: #F5F4F1;
+  --border: #D0CEC8;
+  --status-ok: #2D7A2D;
+  --status-ok-bg: #E8F4E8;
+  --status-warn: #7A5500;
+  --status-warn-bg: #FFF8E1;
+  --status-err: #8B1A06;
+  --status-err-bg: #FBEAE6;
+}
+
+body {
+  color: var(--text);
+  background: var(--surface);
+}
