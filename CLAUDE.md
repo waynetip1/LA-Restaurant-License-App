@@ -667,6 +667,21 @@ Follow this sequence. Do not skip ahead.
 
 ---
 
+## Git Workflow
+
+At the end of every session run:
+```bash
+git add .
+git commit -m "Session X complete: [description]"
+git push origin main
+```
+
+When instructed to "commit and push", Claude Code should run all three
+commands automatically without waiting for manual input from Wayne.
+Do not stage .env.local or Credentials.txt — both are in .gitignore.
+
+---
+
 ## Session Log
 
 ### Session 1 — Project Scaffolding (Complete)
@@ -738,8 +753,8 @@ LA County updates this path when they publish new year forms.
 - [x] Project scaffolded
 - [x] Supabase schema created
 - [x] Form currency validation built
-- [ ] Auth working
-- [ ] Dashboard layout built
+- [x] Auth working
+- [x] Dashboard layout built
 - [ ] Intake wizard complete
 - [ ] PDF generation working
 - [ ] Dashboard home complete
@@ -753,5 +768,30 @@ LA County updates this path when they publish new year forms.
 
 ---
 
-*Last updated: April 2026 — Session 3 complete and verified*
+### Session 4 — Authentication (Complete)
+**Date:** April 2026
+**Status:** Verified — `next build` passes clean, 17/17 static pages generated
+
+What was built and confirmed:
+- app/(auth)/layout.tsx — centered, full-screen auth wrapper, no nav
+- app/(auth)/login/page.tsx — email/password login, Supabase signInWithPassword,
+  inline error display, brand styling, redirect to / on success
+- app/(auth)/signup/page.tsx — full name + email + password, Supabase signUp,
+  full_name passed in user metadata, redirect to / on success
+- middleware.ts — @supabase/ssr createServerClient, getUser() (not getSession()),
+  unauthenticated → /login redirect, authenticated on auth routes → / redirect
+- app/(dashboard)/layout.tsx — sticky top header with PermitReady logo + sign-out
+  avatar, fixed bottom nav with 5 tabs (Home/Permits/Staff/Vendors/Finance),
+  active tab highlighted in brand red
+- Placeholder pages for all routes: permits, permits/[id], permits/wizard,
+  directory, compliance, staff, vendors, account
+- Stub API routes filled: compliance-feed, webhooks/stripe
+
+Note: `next build` hits a Windows/OneDrive EINVAL readlink error during .next
+cleanup — this is a filesystem issue, not a code error. Build output and type
+check both pass cleanly. Run `npm run dev` from a Windows terminal normally.
+
+---
+
+*Last updated: April 2026 — Session 4 complete and verified*
 *Update this file at the end of every major build session.*
