@@ -748,26 +748,6 @@ LA County updates this path when they publish new year forms.
 
 ---
 
-## Current Build Status
-
-- [x] Project scaffolded
-- [x] Supabase schema created
-- [x] Form currency validation built
-- [x] Auth working
-- [x] Dashboard layout built
-- [ ] Intake wizard complete
-- [ ] PDF generation working
-- [ ] Dashboard home complete
-- [ ] Office directory complete
-- [ ] Stripe integrated
-- [ ] Compliance feed live
-- [ ] Staff tracker complete
-- [ ] Deployed to Vercel
-
-> Update checkboxes as each item is completed.
-
----
-
 ### Session 4 — Authentication (Complete)
 **Date:** April 2026
 **Status:** Verified — `next build` passes clean, 17/17 static pages generated
@@ -812,5 +792,47 @@ To activate Google OAuth in Supabase:
 
 ---
 
-*Last updated: April 2026 — Session 4b complete and verified*
+### Session 5 — Dashboard Home Screen (Complete)
+**Date:** April 2026
+**Status:** Verified — next build passes 18/18 pages
+
+What was built and confirmed:
+- app/(dashboard)/page.tsx — full dashboard home as a React Server Component
+- lib/supabase/server.ts — added createSessionClient() (anon key + cookie auth)
+  for use in server components; createServiceClient() unchanged for admin use
+- Page fetches logged-in user via getUser(), redirects to /login if no session
+- Profile full_name fetched from profiles table, falls back to email prefix
+- Section A: alert bar (hardcoded sample — Public Health Permit 14 days)
+- Section B: stats row — 3 columns: Active (7), Expiring (1), Compliance (100%)
+- Section C: license tracker — 3 sample permits with status badges
+- Section D: quick actions — 2×2 grid linking to wizard, directory, compliance
+- Section E: compliance feed preview — 2 tagged news items
+- All colors via CSS variables, no hardcoded hex in JSX
+
+Data is hardcoded sample data — will be replaced with live Supabase queries
+when the permit intake wizard (Session 6) populates real rows.
+
+---
+
+## Current Build Status
+
+- [x] Project scaffolded
+- [x] Supabase schema created
+- [x] Form currency validation built
+- [x] Auth working
+- [x] Dashboard layout built
+- [x] Dashboard home complete
+- [ ] Intake wizard complete
+- [ ] PDF generation working
+- [ ] Office directory complete
+- [ ] Stripe integrated
+- [ ] Compliance feed live
+- [ ] Staff tracker complete
+- [ ] Deployed to Vercel
+
+> Update checkboxes as each item is completed.
+
+---
+
+*Last updated: April 2026 — Session 5 complete and verified*
 *Update this file at the end of every major build session.*
