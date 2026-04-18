@@ -691,11 +691,53 @@ What still needs filling in before Session 2:
 
 ---
 
+## Session Log
+
+### Session 2 — Supabase Database Build (Complete)
+**Date:** April 2026
+**Status:** Verified
+
+What was built and confirmed:
+- lib/supabase/client.ts — browser-side client using createBrowserClient from @supabase/ssr
+- lib/supabase/server.ts — server-side service role client (server components + API routes only)
+- lib/supabase/queries.ts — typed query helpers for all 10 tables; includes logAISuggestion
+- supabase/migrations/001_initial_schema.sql — all 10 tables in spec order with RLS policies
+- supabase/seed.sql — seeds form_versions with placeholder hash (validator replaces on first run)
+- Auto-create profile trigger on auth.users insert included in migration
+
+What still needs to be done before Session 3:
+- Paste and run 001_initial_schema.sql in Supabase SQL Editor
+- Run seed.sql in Supabase SQL Editor after migration
+- Fill in NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY in .env.local
+- Trigger the form validator once to establish the real SHA-256 baseline hash
+
+---
+
+### Session 3 — Form Currency Validation (Complete)
+**Date:** April 2026
+**Status:** Verified — returning { status: verified } confirmed in browser
+
+What was built and confirmed:
+- lib/form-validator/check-form-currency.ts — SHA-256 fetch and compare
+- lib/resend/admin-alert.ts — admin alert email on hash mismatch
+- app/api/form-validate/route.ts — on-demand GET endpoint
+- app/api/cron/form-check/route.ts — daily cron GET endpoint
+- Real LA County Business Tax form PDF fetched and hashed successfully
+- Real SHA-256 hash stored in form_versions table in Supabase
+- Status confirmed as verified in live test
+- Correct form URL confirmed as:
+  https://finance.lacity.gov/sites/g/files/wph1721/files/2025-12/BLANK%202026%20FORM%201000A.pdf
+
+Note for quarterly audit: Verify this URL still resolves every 90 days.
+LA County updates this path when they publish new year forms.
+
+---
+
 ## Current Build Status
 
 - [x] Project scaffolded
-- [ ] Supabase schema created
-- [ ] Form currency validation built
+- [x] Supabase schema created
+- [x] Form currency validation built
 - [ ] Auth working
 - [ ] Dashboard layout built
 - [ ] Intake wizard complete
@@ -711,5 +753,5 @@ What still needs filling in before Session 2:
 
 ---
 
-*Last updated: April 2026 — Session 1 complete and verified*
+*Last updated: April 2026 — Session 3 complete and verified*
 *Update this file at the end of every major build session.*
