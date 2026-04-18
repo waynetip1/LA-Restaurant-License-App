@@ -791,7 +791,26 @@ Note: `next build` hits a Windows/OneDrive EINVAL readlink error during .next
 cleanup — this is a filesystem issue, not a code error. Build output and type
 check both pass cleanly. Run `npm run dev` from a Windows terminal normally.
 
+### Session 4b — Google OAuth (Complete)
+**Date:** April 2026
+**Status:** Verified — next build passes 18/18 pages
+
+What was added:
+- Google "Continue with Google" button added to login and signup pages,
+  above the email/password form with an "or" divider
+- app/auth/callback/route.ts — exchanges OAuth code for session,
+  redirects to / on success
+- Callback URL to register in Supabase and Google Cloud Console:
+  http://localhost:3000/auth/callback (dev)
+  https://your-domain.com/auth/callback (prod)
+
+To activate Google OAuth in Supabase:
+1. Supabase dashboard → Authentication → Providers → Google → Enable
+2. Paste Google OAuth Client ID and Secret from Google Cloud Console
+3. Add callback URL to Google Cloud Console → OAuth consent screen →
+   Authorized redirect URIs
+
 ---
 
-*Last updated: April 2026 — Session 4 complete and verified*
+*Last updated: April 2026 — Session 4b complete and verified*
 *Update this file at the end of every major build session.*
