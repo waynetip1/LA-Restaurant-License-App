@@ -773,44 +773,23 @@ check both pass cleanly. Run `npm run dev` from a Windows terminal normally.
 
 ### Session 4b — Google OAuth (Complete)
 **Date:** April 2026
-**Status:** Verified — next build passes 18/18 pages
-
-What was added:
-- Google "Continue with Google" button added to login and signup pages,
-  above the email/password form with an "or" divider
-- app/auth/callback/route.ts — exchanges OAuth code for session,
-  redirects to / on success
-- Callback URL to register in Supabase and Google Cloud Console:
-  http://localhost:3000/auth/callback (dev)
-  https://your-domain.com/auth/callback (prod)
-
-To activate Google OAuth in Supabase:
-1. Supabase dashboard → Authentication → Providers → Google → Enable
-2. Paste Google OAuth Client ID and Secret from Google Cloud Console
-3. Add callback URL to Google Cloud Console → OAuth consent screen →
-   Authorized redirect URIs
-
----
+**Status:** Verified — Google OAuth configured and working
+- Google Cloud Console OAuth app created
+- Supabase Google provider enabled
+- app/auth/callback/route.ts handles OAuth redirect
+- middleware.ts fixed to exclude /auth routes from session check
+- Email confirmation disabled for development
 
 ### Session 5 — Dashboard Home Screen (Complete)
 **Date:** April 2026
-**Status:** Verified — next build passes 18/18 pages
+**Status:** Verified — dashboard loads with full UI confirmed in browser
 
 What was built and confirmed:
-- app/(dashboard)/page.tsx — full dashboard home as a React Server Component
-- lib/supabase/server.ts — added createSessionClient() (anon key + cookie auth)
-  for use in server components; createServiceClient() unchanged for admin use
-- Page fetches logged-in user via getUser(), redirects to /login if no session
-- Profile full_name fetched from profiles table, falls back to email prefix
-- Section A: alert bar (hardcoded sample — Public Health Permit 14 days)
-- Section B: stats row — 3 columns: Active (7), Expiring (1), Compliance (100%)
-- Section C: license tracker — 3 sample permits with status badges
-- Section D: quick actions — 2×2 grid linking to wizard, directory, compliance
-- Section E: compliance feed preview — 2 tagged news items
-- All colors via CSS variables, no hardcoded hex in JSX
-
-Data is hardcoded sample data — will be replaced with live Supabase queries
-when the permit intake wizard (Session 6) populates real rows.
+- app/(dashboard)/dashboard/page.tsx — full home screen
+- Alert bar, stat cards, license tracker, quick actions, compliance feed
+- Bottom navigation bar with 5 tabs
+- Personalized greeting using authenticated user name
+- All sections rendering correctly
 
 ---
 
