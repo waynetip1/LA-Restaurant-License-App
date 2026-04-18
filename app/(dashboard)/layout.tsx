@@ -8,7 +8,7 @@ import { createClient } from '@/lib/supabase/client';
 const NAV_TABS = [
   {
     label: 'Home',
-    href: '/',
+    href: '/dashboard',
     icon: (active: boolean) => (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={active ? '#C8391A' : '#6B6B6B'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 9.75L12 3l9 6.75V21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.75z" />
@@ -104,8 +104,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <nav className="fixed bottom-0 left-0 right-0 bg-surface border-t border-[#D0CEC8] z-30">
         <div className="flex items-stretch max-w-2xl mx-auto">
           {NAV_TABS.map((tab) => {
-            const isActive = tab.href === '/'
-              ? pathname === '/'
+            const isActive = tab.href === '/dashboard'
+              ? pathname === '/dashboard'
               : pathname.startsWith(tab.href);
             return (
               <Link
